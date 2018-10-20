@@ -11,17 +11,18 @@ namespace CustomerManager.Services
 {
     public class CustomerService : ICustomerService
     {
-
         private readonly IEfGenericRepository<Customer> customerRepository;
+        private readonly IEfGenericRepository<Order> orderRepository;
 
-        public CustomerService(IEfGenericRepository<Customer> repository)
+        public CustomerService(IEfGenericRepository<Customer> customerRepository, IEfGenericRepository<Order> orderRepository)
         {
-            if (repository == null)
+            if (customerRepository == null)
             {
                 throw new ArgumentException("The customer repository should not be null!");
             }
 
-            this.customerRepository = repository;
+            this.customerRepository = customerRepository;
+            this.orderRepository = orderRepository;
         }
 
         public IEnumerable<Customer> GetAll()
@@ -36,7 +37,8 @@ namespace CustomerManager.Services
 
         public IEnumerable<Order> GetOrdersByCustomerId(object id)
         {
-            return this.customerRepository.GetById(id).Orders;
+            return this.orderRepository.All()
+                                       .Where(x => x.CustomerID.Equals(id.ToString(), StringComparison.InvariantCultureIgnoreCase));
         }
     }
 }

@@ -1,15 +1,18 @@
-namespace CustomerManager.Data.Models
-{
-    using System;
-    using System.Data.Entity;
-    using System.ComponentModel.DataAnnotations.Schema;
-    using System.Linq;
+using System;
+using System.Data.Entity;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
+using CustomerManager.Data.Models;
 
-    public partial class NorthwindDbContext : DbContext
+namespace CustomerManager.Data
+{
+    public class NorthwindDbContext : DbContext, INorthwindDbContext
     {
         public NorthwindDbContext()
             : base("name=NorthwindDbContext")
         {
+            this.Configuration.LazyLoadingEnabled = false;
+            this.Configuration.ProxyCreationEnabled = false;
         }
 
         public virtual DbSet<Category> Categories { get; set; }
