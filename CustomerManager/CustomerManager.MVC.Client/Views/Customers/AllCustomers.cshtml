@@ -1,0 +1,32 @@
+﻿@model  List<CustomerManager.Common.Models.CustomerModel>
+@{
+    ViewBag.Title = "AllCustomers";
+}
+
+<h2 class="text-center">All Customers page</h2>
+
+<table class="table table-bordered table-hover table-responsive">
+    <thead>
+        <tr>
+            <th class="text-center">
+                Customer name
+            </th>
+            <th class="text-center">
+                Orders count
+            </th>
+        </tr>
+    </thead>
+    <tbody class="text-center">
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.ActionLink(item.ContractName, "CustomerById", "Customers", new { id = item.Id }, null)
+                </td>
+                <td>
+                    @item.OrdersCount
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

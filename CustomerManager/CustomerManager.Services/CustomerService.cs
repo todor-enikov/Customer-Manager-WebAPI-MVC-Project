@@ -37,6 +37,7 @@ namespace CustomerManager.Services
 
             var resultAllCustomers = allCustomers.Select(c => new CustomerModel()
             {
+                Id = c.CustomerID,
                 ContractName = c.ContactName,
                 OrdersCount = c.Orders.Count
             });

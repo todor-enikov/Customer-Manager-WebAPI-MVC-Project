@@ -16,7 +16,8 @@ namespace CustomerManager.Rest.Call.Services
 
         public CustomerRestCallService(IRestClient client)
         {
-            this.client = new RestClient(baseURL);
+            this.client = client;
+            this.client.BaseUrl =new Uri(baseURL);
         }
 
         public IEnumerable<CustomerModel> GetAllCustomers()

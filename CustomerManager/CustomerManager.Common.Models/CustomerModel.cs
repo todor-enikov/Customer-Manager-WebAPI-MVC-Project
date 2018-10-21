@@ -8,6 +8,8 @@ namespace CustomerManager.Common.Models
 {
     public class CustomerModel
     {
+        public string Id { get; set; }
+
         public string ContractName { get; set; }
 
         public int OrdersCount { get; set; }
