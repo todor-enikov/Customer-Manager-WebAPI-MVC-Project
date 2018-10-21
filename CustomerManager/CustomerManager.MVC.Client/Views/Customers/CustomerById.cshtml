@@ -1,0 +1,57 @@
+﻿@model CustomerManager.Common.Models.CustomerByIdModel
+@{
+    ViewBag.Title = "Customer By Id page";
+}
+
+<h2 class="text-center">@ViewBag.Title</h2>
+
+<table class="table table-bordered table-hover table-responsive">
+    <thead>
+        <tr>
+            <th class="text-center">
+                Customer Name
+            </th>
+            <th class="text-center">
+                Company Name
+            </th>
+            <th class="text-center">
+                Contact Title
+            </th>
+            <th class="text-center">
+                Address
+            </th>
+            <th class="text-center">
+                City
+            </th>
+            <th class="text-center">
+                Postal Code
+            </th>
+            <th class="text-center">
+                Region
+            </th>
+            <th class="text-center">
+                Country
+            </th>
+            <th class="text-center">
+                Phone
+            </th>
+            <th class="text-center">
+                Fax
+            </th>
+        </tr>
+    </thead>
+    <tbody class="text-center">
+        <tr>
+            <td>@Model.ContactName</td>
+            <td>@Model.CompanyName</td>
+            <td>@Model.ContactTitle</td>
+            <td>@Model.Address</td>
+            <td>@Model.City</td>
+            <td>@Model.PostalCode</td>
+            <td>@(string.IsNullOrEmpty(Model.Region) ? "No region." : Model.Region)</td>
+            <td>@Model.Country</td>
+            <td>@Model.Phone</td>
+            <td>@(string.IsNullOrEmpty(Model.Fax) ? "No fax." : Model.Fax)</td>
+        </tr>
+    </tbody>
+</table>

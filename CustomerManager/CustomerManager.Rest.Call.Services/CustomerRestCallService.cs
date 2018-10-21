@@ -17,7 +17,7 @@ namespace CustomerManager.Rest.Call.Services
         public CustomerRestCallService(IRestClient client)
         {
             this.client = client;
-            this.client.BaseUrl =new Uri(baseURL);
+            this.client.BaseUrl = new Uri(baseURL);
         }
 
         public IEnumerable<CustomerModel> GetAllCustomers()
@@ -25,6 +25,15 @@ namespace CustomerManager.Rest.Call.Services
             var getAllCustomersRequest = new RestRequest("api/customers");
 
             var response = this.client.Execute<List<CustomerModel>>(getAllCustomersRequest).Data;
+
+            return response;
+        }
+
+        public CustomerByIdModel GetCustomerById(string id)
+        {
+            var getCustomerByIdRequest = new RestRequest("api/customer/" + id);
+
+            var response = this.client.Execute<CustomerByIdModel>(getCustomerByIdRequest).Data;
 
             return response;
         }

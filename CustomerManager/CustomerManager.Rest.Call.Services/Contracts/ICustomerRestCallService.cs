@@ -10,5 +10,7 @@ namespace CustomerManager.Rest.Call.Services.Contracts
     public interface ICustomerRestCallService
     {
         IEnumerable<CustomerModel> GetAllCustomers();
+
+        CustomerByIdModel GetCustomerById(string id);
     }
 }

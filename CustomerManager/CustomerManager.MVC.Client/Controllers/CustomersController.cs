@@ -22,9 +22,10 @@ namespace CustomerManager.MVC.Client.Controllers
             return View(allCustomers);
         }
 
-        public ActionResult CustomerById()
+        public ActionResult CustomerById(string id)
         {
-            return View();
+            var customerById = this.customersService.GetCustomerById(id);
+            return View(customerById);
         }
     }
 }

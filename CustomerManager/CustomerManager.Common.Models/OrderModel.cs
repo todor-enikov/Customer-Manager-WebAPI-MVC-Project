@@ -6,12 +6,10 @@ using System.Threading.Tasks;
 
 namespace CustomerManager.Common.Models
 {
-    public class CustomerModel
+    public class OrderModel
     {
-        public string Id { get; set; }
+        public decimal Total { get; set; }
 
-        public string ContactName { get; set; }
-
-        public int OrdersCount { get; set; }
+        public int ProductsCount { get; set; }
     }
 }

@@ -1,9 +1,9 @@
 ﻿@model  List<CustomerManager.Common.Models.CustomerModel>
 @{
-    ViewBag.Title = "AllCustomers";
+    ViewBag.Title = "All Customers page";
 }
 
-<h2 class="text-center">All Customers page</h2>
+<h2 class="text-center">@ViewBag.Title</h2>
 
 <table class="table table-bordered table-hover table-responsive">
     <thead>
@@ -21,7 +21,7 @@
         {
             <tr>
                 <td>
-                    @Html.ActionLink(item.ContractName, "CustomerById", "Customers", new { id = item.Id }, null)
+                    @Html.ActionLink(item.ContactName, "CustomerById", "Customers", new { id = item.Id }, null)
                 </td>
                 <td>
                     @item.OrdersCount
