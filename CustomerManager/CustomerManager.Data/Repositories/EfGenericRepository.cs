@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CustomerManager.Data.Models;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -27,6 +28,11 @@ namespace CustomerManager.Data.Repositories
         public virtual IEnumerable<T> All()
         {
             return this.DbSet.AsEnumerable();
+        }
+
+        public virtual IEnumerable<T> AllIncludeChildEntity(string entity)
+        {
+            return this.DbSet.Include(entity).AsEnumerable();
         }
 
         public virtual T GetById(object id)

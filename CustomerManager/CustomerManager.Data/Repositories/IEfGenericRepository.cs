@@ -11,6 +11,8 @@ namespace CustomerManager.Data.Repositories
     {
         IEnumerable<T> All();
 
+        IEnumerable<T> AllIncludeChildEntity(string entity);
+
         T GetById(object id);
     }
 }
