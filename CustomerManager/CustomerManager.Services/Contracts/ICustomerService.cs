@@ -1,4 +1,5 @@
-﻿using CustomerManager.Data.Models;
+﻿using CustomerManager.Common.Models;
+using CustomerManager.Data.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,7 @@ namespace CustomerManager.Services.Contracts
 {
     public interface ICustomerService
     {
-        IEnumerable<Customer> GetAll();
+        IEnumerable<CustomerModel> GetAllIncludeChildEntity(string entity);
 
         Customer GetById(object id);
 

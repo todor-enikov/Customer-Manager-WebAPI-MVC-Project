@@ -139,6 +139,10 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CustomerManager.Common.Models\CustomerManager.Common.Models.csproj">
+      <Project>{76165245-db52-4ddd-9423-c09b487e5224}</Project>
+      <Name>CustomerManager.Common.Models</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CustomerManager.Data.Models\CustomerManager.Data.Models.csproj">
       <Project>{5d1e5605-746c-443f-8aff-de47f55af634}</Project>
       <Name>CustomerManager.Data.Models</Name>

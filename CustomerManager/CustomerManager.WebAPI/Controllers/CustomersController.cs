@@ -5,9 +5,11 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace CustomerManager.WebAPI.Controllers
 {
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     [RoutePrefix("api")]
     public class CustomersController : ApiController
     {
@@ -22,7 +24,8 @@ namespace CustomerManager.WebAPI.Controllers
         [Route("customers")]
         public IHttpActionResult Customers()
         {
-            var allCustomers = this.customerService.GetAll()
+            var includeEntity = "Orders";
+            var allCustomers = this.customerService.GetAllIncludeChildEntity(includeEntity)
                                                    .ToList();
             if (allCustomers == null ||
                 allCustomers.Count == 0)

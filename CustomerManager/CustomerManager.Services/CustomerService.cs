@@ -1,4 +1,5 @@
-﻿using CustomerManager.Data.Models;
+﻿using CustomerManager.Common.Models;
+using CustomerManager.Data.Models;
 using CustomerManager.Data.Repositories;
 using CustomerManager.Services.Contracts;
 using System;
@@ -21,13 +22,26 @@ namespace CustomerManager.Services
                 throw new ArgumentException("The customer repository should not be null!");
             }
 
+            if (orderRepository == null)
+            {
+                throw new ArgumentException("The order repository should not be null!");
+            }
+
             this.customerRepository = customerRepository;
             this.orderRepository = orderRepository;
         }
 
-        public IEnumerable<Customer> GetAll()
+        public IEnumerable<CustomerModel> GetAllIncludeChildEntity(string entity)
         {
-            return this.customerRepository.All();
+            var allCustomers = this.customerRepository.AllIncludeChildEntity(entity);
+
+            var resultAllCustomers = allCustomers.Select(c => new CustomerModel()
+            {
+                ContractName = c.ContactName,
+                OrdersCount = c.Orders.Count
+            });
+
+            return resultAllCustomers;
         }
 
         public Customer GetById(object id)
@@ -38,7 +52,8 @@ namespace CustomerManager.Services
         public IEnumerable<Order> GetOrdersByCustomerId(object id)
         {
             return this.orderRepository.All()
-                                       .Where(x => x.CustomerID.Equals(id.ToString(), StringComparison.InvariantCultureIgnoreCase));
+                                       .Where(x => x.CustomerID.Equals(id.ToString(), StringComparison.InvariantCultureIgnoreCase))
+                                       .ToList();
         }
     }
 }
