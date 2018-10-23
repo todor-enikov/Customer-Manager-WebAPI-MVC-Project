@@ -11,5 +11,9 @@ namespace CustomerManager.Common.Models
         public decimal Total { get; set; }
 
         public int ProductsCount { get; set; }
+
+        public bool IsProductInProduction { get; set; }
+
+        public bool IsThereEnoughUnitsInStock { get; set; }
     }
 }
