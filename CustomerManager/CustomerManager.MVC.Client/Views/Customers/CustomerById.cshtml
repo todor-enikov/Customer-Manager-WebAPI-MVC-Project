@@ -55,3 +55,33 @@
         </tr>
     </tbody>
 </table>
+<h2 class="text-center">Orders</h2>
+<table class="table table-bordered table-hover table-responsive">
+    <thead>
+        <tr>
+            <th class="text-center">
+                Products count
+            </th>
+            <th class="text-center">
+                Total
+            </th>
+            <th class="text-center">
+                Contact Title
+            </th>
+            <th class="text-center">
+                Address
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Orders)
+        {
+            <tr class="text-center">
+                <td>@item.ProductsCount</td>
+                <td>@item.Total</td>
+                <td>@(item.IsProductInProduction == true ? "There is product which is stopped from manufacturing." : "All products are in manufacturing")</td>
+                <td>@(item.IsThereEnoughUnitsInStock == true ? "There are enough units in stock." : "There aren't enough units in stock.")</td>
+            </tr>
+        }
+    </tbody>
+</table>
