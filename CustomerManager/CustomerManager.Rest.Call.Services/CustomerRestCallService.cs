@@ -46,5 +46,16 @@ namespace CustomerManager.Rest.Call.Services
 
             return response;
         }
+
+        public IEnumerable<CustomerModel> GetCustomerByContactName(string contactName)
+        {
+            var getAllCustomersRequest = new RestRequest("api/customers");
+
+            var response = this.client.Execute<List<CustomerModel>>(getAllCustomersRequest).Data;
+
+            var resultCustomer = response.Where(x => x.ContactName.Equals(contactName, StringComparison.CurrentCultureIgnoreCase));
+
+            return resultCustomer;
+        }
     }
 }
