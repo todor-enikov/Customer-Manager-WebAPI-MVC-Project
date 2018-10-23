@@ -13,6 +13,11 @@ namespace CustomerManager.MVC.Client.Controllers
 
         public CustomersController(ICustomerRestCallService service)
         {
+            if (service == null)
+            {
+                throw new NullReferenceException("Customer service should not be null!");
+            }
+
             this.customersService = service;
         }
 

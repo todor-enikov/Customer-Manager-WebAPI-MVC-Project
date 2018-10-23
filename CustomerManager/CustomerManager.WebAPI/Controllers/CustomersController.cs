@@ -17,6 +17,11 @@ namespace CustomerManager.WebAPI.Controllers
 
         public CustomersController(ICustomerService service)
         {
+            if (service == null)
+            {
+                throw new NullReferenceException("Customer service should not be null!");
+            }
+
             this.customerService = service;
         }
 
