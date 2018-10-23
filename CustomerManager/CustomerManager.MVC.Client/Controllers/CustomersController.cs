@@ -43,5 +43,16 @@ namespace CustomerManager.MVC.Client.Controllers
 
             return View(customerById);
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Search(string search)
+        {
+            var customerByContactName = this.customersService
+                                            .GetCustomerByContactName(search.Trim())
+                                            .ToList();
+
+            return View("AllCustomers", customerByContactName);
+        }
     }
 }

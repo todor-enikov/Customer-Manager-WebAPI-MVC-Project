@@ -204,6 +204,8 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Customers\AllCustomers.cshtml" />
     <Content Include="Views\Customers\CustomerById.cshtml" />
+    <Content Include="Views\Shared\_AllCustomers.cshtml" />
+    <Content Include="Views\Shared\_NoResults.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
