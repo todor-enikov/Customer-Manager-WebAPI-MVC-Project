@@ -11,8 +11,7 @@ namespace CustomerManager.Data
         public NorthwindDbContext()
             : base("name=NorthwindDbContext")
         {
-            this.Configuration.LazyLoadingEnabled = false;
-            this.Configuration.ProxyCreationEnabled = false;
+            this.Configuration.LazyLoadingEnabled = true;
         }
 
         public virtual DbSet<Category> Categories { get; set; }

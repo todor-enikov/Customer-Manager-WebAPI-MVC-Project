@@ -45,16 +45,43 @@ namespace CustomerManager.Services
             return resultAllCustomers;
         }
 
-        public Customer GetById(object id)
+        public CustomerByIdModel GetById(object id)
         {
-            return this.customerRepository.GetById(id);
+            var customerById = this.customerRepository.GetById(id);
+
+            var resultCustomerById = new CustomerByIdModel()
+            {
+                ContactName = customerById.ContactName,
+                ContactTitle = customerById.ContactTitle,
+                CompanyName = customerById.CompanyName,
+                City = customerById.City,
+                Country = customerById.Country,
+                Address = customerById.Address,
+                Fax = customerById.Fax,
+                Phone = customerById.Phone,
+                PostalCode = customerById.PostalCode,
+                Region = customerById.Region
+            };
+
+            return resultCustomerById;
         }
 
-        public IEnumerable<Order> GetOrdersByCustomerId(object id)
+        public IEnumerable<OrderModel> GetOrdersByCustomerId(object id)
         {
-            return this.orderRepository.All()
-                                       .Where(x => x.CustomerID.Equals(id.ToString(), StringComparison.InvariantCultureIgnoreCase))
-                                       .ToList();
+
+            var ordersByCustomerId = this.orderRepository.All()
+                                         .Where(x => x.CustomerID.Equals(id.ToString(), StringComparison.InvariantCultureIgnoreCase))
+                                         .ToList();
+
+            var resultOrdersByCustomerId = ordersByCustomerId.Select(o => new OrderModel()
+            {
+                ProductsCount = o.Order_Details.Count(),
+                Total = o.Order_Details.Sum(t => (t.Quantity * t.UnitPrice) - (t.Quantity * t.UnitPrice * (decimal)t.Discount)),
+                IsProductInProduction = o.Order_Details.Any(isInP => isInP.Product.Discontinued),
+                IsThereEnoughUnitsInStock = o.Order_Details.Any(isUnit => isUnit.Product.UnitsInStock > isUnit.Product.UnitsOnOrder)
+            }).ToList();
+
+            return resultOrdersByCustomerId;
         }
     }
 }

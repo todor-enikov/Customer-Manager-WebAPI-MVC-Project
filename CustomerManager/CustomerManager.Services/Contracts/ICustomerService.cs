@@ -12,8 +12,8 @@ namespace CustomerManager.Services.Contracts
     {
         IEnumerable<CustomerModel> GetAllIncludeChildEntity(string entity);
 
-        Customer GetById(object id);
+        CustomerByIdModel GetById(object id);
 
-        IEnumerable<Order> GetOrdersByCustomerId(object id);
+        IEnumerable<OrderModel> GetOrdersByCustomerId(object id);
     }
 }
