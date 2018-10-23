@@ -12,5 +12,7 @@ namespace CustomerManager.Rest.Call.Services.Contracts
         IEnumerable<CustomerModel> GetAllCustomers();
 
         CustomerByIdModel GetCustomerById(string id);
+
+        List<OrderModel> GetOrdersByCustomerId(string id);
     }
 }

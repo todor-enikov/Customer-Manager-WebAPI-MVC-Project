@@ -37,5 +37,14 @@ namespace CustomerManager.Rest.Call.Services
 
             return response;
         }
+
+        public List<OrderModel> GetOrdersByCustomerId(string id)
+        {
+            var getCustomerByIdRequest = new RestRequest("api/customer/" + id + "/orders");
+
+            var response = this.client.Execute<List<OrderModel>>(getCustomerByIdRequest).Data;
+
+            return response;
+        }
     }
 }
