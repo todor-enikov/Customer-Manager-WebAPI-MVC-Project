@@ -3,16 +3,15 @@
 
 namespace CustomerManager.MVC.Client.App_Start
 {
-    using System;
-    using System.Web;
     using CustomerManager.Rest.Call.Services;
     using CustomerManager.Rest.Call.Services.Contracts;
     using Microsoft.Web.Infrastructure.DynamicModuleHelper;
-
     using Ninject;
     using Ninject.Web.Common;
     using Ninject.Web.Common.WebHost;
     using RestSharp;
+    using System;
+    using System.Web;
 
     public static class NinjectWebCommon
     {

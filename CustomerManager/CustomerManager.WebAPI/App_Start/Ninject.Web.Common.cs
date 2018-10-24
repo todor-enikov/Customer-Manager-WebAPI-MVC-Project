@@ -3,32 +3,31 @@
 
 namespace CustomerManager.WebAPI.App_Start
 {
-    using System;
-    using System.Web;
     using CustomerManager.Data;
     using CustomerManager.Data.Repositories;
     using CustomerManager.Services;
     using CustomerManager.Services.Contracts;
     using Microsoft.Web.Infrastructure.DynamicModuleHelper;
-
     using Ninject;
     using Ninject.Web.Common;
     using Ninject.Web.Common.WebHost;
+    using System;
+    using System.Web;
 
-    public static class NinjectWebCommon 
+    public static class NinjectWebCommon
     {
         private static readonly Bootstrapper bootstrapper = new Bootstrapper();
 
         /// <summary>
         /// Starts the application
         /// </summary>
-        public static void Start() 
+        public static void Start()
         {
             DynamicModuleUtility.RegisterModule(typeof(OnePerRequestHttpModule));
             DynamicModuleUtility.RegisterModule(typeof(NinjectHttpModule));
             bootstrapper.Initialize(CreateKernel);
         }
-        
+
         /// <summary>
         /// Stops the application.
         /// </summary>
@@ -36,7 +35,7 @@ namespace CustomerManager.WebAPI.App_Start
         {
             bootstrapper.ShutDown();
         }
-        
+
         /// <summary>
         /// Creates the kernel that will manage your application.
         /// </summary>
@@ -68,6 +67,6 @@ namespace CustomerManager.WebAPI.App_Start
             kernel.Bind(typeof(IEfGenericRepository<>)).To(typeof(EfGenericRepository<>));
 
             kernel.Bind<ICustomerService>().To<CustomerService>();
-        }        
+        }
     }
 }

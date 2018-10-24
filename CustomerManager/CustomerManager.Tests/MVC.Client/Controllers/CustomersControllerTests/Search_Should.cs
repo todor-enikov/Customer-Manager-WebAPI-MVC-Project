@@ -2,11 +2,6 @@
 using CustomerManager.Rest.Call.Services.Contracts;
 using Moq;
 using NUnit.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Web.Mvc;
 using TestStack.FluentMVCTesting;
 
@@ -27,7 +22,7 @@ namespace CustomerManager.Tests.MVC.Client.Controllers.CustomersControllerTests
             ViewResult result = controller.Search(searchTerm) as ViewResult;
 
             // Assert
-            
+
             Assert.IsNotNull(result);
         }
 

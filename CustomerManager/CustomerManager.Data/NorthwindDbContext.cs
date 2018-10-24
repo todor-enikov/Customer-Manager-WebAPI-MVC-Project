@@ -1,8 +1,5 @@
-using System;
-using System.Data.Entity;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
 using CustomerManager.Data.Models;
+using System.Data.Entity;
 
 namespace CustomerManager.Data
 {
