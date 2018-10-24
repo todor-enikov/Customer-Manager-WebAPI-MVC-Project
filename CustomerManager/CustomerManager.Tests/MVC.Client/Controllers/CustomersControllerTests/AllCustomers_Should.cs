@@ -1,4 +1,5 @@
-﻿using CustomerManager.MVC.Client.Controllers;
+﻿using CustomerManager.Common.Models;
+using CustomerManager.MVC.Client.Controllers;
 using CustomerManager.Rest.Call.Services.Contracts;
 using Moq;
 using NUnit.Framework;
@@ -8,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web.Mvc;
+using TestStack.FluentMVCTesting;
 
 namespace CustomerManager.Tests.MVC.Client.Controllers.Tests
 {
@@ -38,6 +40,22 @@ namespace CustomerManager.Tests.MVC.Client.Controllers.Tests
         }
 
         [Test]
+        public void BeNull()
+        {
+            // Arrange
+            IList<CustomerModel> allCustomers = null;
+            var service = new Mock<ICustomerRestCallService>();
+            service.Setup(x => x.GetAllCustomers()).Returns(allCustomers);
+            CustomersController controller = new CustomersController(service.Object);
+
+            // Act
+            ViewResult result = controller.AllCustomers() as ViewResult;
+
+            // Assert
+            Assert.IsNull(result);
+        }
+
+        [Test]
         public void NotBeNull()
         {
             // Arrange
@@ -49,6 +67,19 @@ namespace CustomerManager.Tests.MVC.Client.Controllers.Tests
 
             // Assert
             Assert.IsNotNull(result);
+        }
+
+        [Test]
+        public void ReturnViewWithExpectedModel_OnAllCustomersAction()
+        {
+            // Arrange
+            var service = new Mock<ICustomerRestCallService>();
+            CustomersController controller = new CustomersController(service.Object);
+
+            // Act & Arrange
+            controller
+                       .WithCallTo(c => c.AllCustomers())
+                       .ShouldRenderDefaultView();
         }
     }
 }

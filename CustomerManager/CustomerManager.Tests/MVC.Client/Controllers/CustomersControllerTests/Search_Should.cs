@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web.Mvc;
+using TestStack.FluentMVCTesting;
 
 namespace CustomerManager.Tests.MVC.Client.Controllers.CustomersControllerTests
 {
@@ -20,12 +21,28 @@ namespace CustomerManager.Tests.MVC.Client.Controllers.CustomersControllerTests
             // Arrange
             var service = new Mock<ICustomerRestCallService>();
             CustomersController controller = new CustomersController(service.Object);
+            string searchTerm = "TestName";
 
             // Act
-            ViewResult result = controller.AllCustomers() as ViewResult;
+            ViewResult result = controller.Search(searchTerm) as ViewResult;
 
             // Assert
+            
             Assert.IsNotNull(result);
+        }
+
+        [Test]
+        public void ReturnViewWithExpectedModel_OnSearchAction()
+        {
+            // Arrange
+            var service = new Mock<ICustomerRestCallService>();
+            CustomersController controller = new CustomersController(service.Object);
+            string searchTerm = "TestName";
+
+            // Act & Arrange
+            controller
+                       .WithCallTo(c => c.Search(searchTerm))
+                       .ShouldRenderView("AllCustomers");
         }
     }
 }
