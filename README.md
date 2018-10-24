@@ -8,6 +8,7 @@ This is application made on ASP .NET MVC and ASP .NET WebAPI. It's purpose is to
  * ASP .NET MVC
  * Entity Framework
  * Nunit
+ * RestSharp
  
  ### How to start the application:
  * Import the Northwind database with the SQL Server Management Studio.
