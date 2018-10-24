@@ -1,16 +1,13 @@
 ﻿@model CustomerManager.Common.Models.CustomerByIdModel
 @{
-    ViewBag.Title = "Customer By Id page";
+    ViewBag.Title = string.Format("Customer with name '{0}'", Model.ContactName);
 }
 
 <h2 class="text-center">@ViewBag.Title</h2>
-
+<br />
 <table class="table table-bordered table-hover table-responsive">
     <thead>
         <tr>
-            <th class="text-center">
-                Customer Name
-            </th>
             <th class="text-center">
                 Company Name
             </th>
@@ -42,7 +39,6 @@
     </thead>
     <tbody class="text-center">
         <tr>
-            <td>@Model.ContactName</td>
             <td>@Model.CompanyName</td>
             <td>@Model.ContactTitle</td>
             <td>@Model.Address</td>
@@ -66,10 +62,10 @@
                 Total
             </th>
             <th class="text-center">
-                Contact Title
+                Is there product which isn't in production?
             </th>
             <th class="text-center">
-                Address
+                Is there enough units in stock?
             </th>
         </tr>
     </thead>
@@ -79,7 +75,7 @@
             <tr class="text-center">
                 <td>@item.ProductsCount</td>
                 <td>@item.Total</td>
-                <td>@(item.IsProductInProduction == true ? "There is product which is stopped from manufacturing." : "All products are in manufacturing")</td>
+                <td>@(item.IsProductInProduction == true ? "There is product which is stopped from manufacturing." : "All products are in manufacturing.")</td>
                 <td>@(item.IsThereEnoughUnitsInStock == true ? "There are enough units in stock." : "There aren't enough units in stock.")</td>
             </tr>
         }
